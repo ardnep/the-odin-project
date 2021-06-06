@@ -3,20 +3,29 @@ body {
     font-size: small;
 }
 
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
 nav {
     display: flex;
+    flex-direction: row;
     justify-content: flex-end;
     align-items: center;
 }   
 
+main {
+    display: flex;
+    flex-direction: column;
+}
+
 nav a {
     color: black;
     padding: 5px;
-    text-decoration: none;
-}
-
-nav a:hover {
-    text-decoration: underline;
 }
 
 #signin {
