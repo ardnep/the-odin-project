@@ -23,6 +23,28 @@ nav a {
     padding: 5px;
 }
 
+.nav-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-left: 15px;
+}
+
+#google-apps {
+    width: 30px;
+    height: 30px;
+    border: none;
+    background-color: white;
+    background-image: url("//ssl.gstatic.com/gb/images/i1_1967ca6a.png");
+    background-position: -133px -39px;
+    opacity: 0.5;
+}
+
+#google-apps:hover {
+    opacity: 0.2;
+}
+
 main {
     margin-top: 100px;
     display: flex;
@@ -63,6 +85,7 @@ footer a {
     cursor: pointer;
     width: 95px;
     height: 35px; 
+    margin-left: 12px;
 }
 
 #signin:hover {
@@ -98,6 +121,7 @@ footer a {
     outline: none;
     width: 90%;
     height: 90%;
+    font-size: 16px;
 }
 
 .search-buttons {
