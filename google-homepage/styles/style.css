@@ -25,7 +25,6 @@ nav a {
 
 main {
     margin-top: 100px;
-    flex: 1;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -43,6 +42,7 @@ footer {
     align-items: center;
     color: #70757a;
     background-color: #f2f2f2;
+    font-family: Arial, sans-serif;
 }
 
 footer a {
@@ -68,4 +68,21 @@ footer a {
 .google-logo {
     width: auto;
     height: 92px;
+}
+
+.search-buttons button {
+    color: #202124;
+    background-color: #f8f9fa;
+    font-family: Arial, sans-serif;
+    border: none;
+    border-radius: 5px;
+    width: 130px;
+    height: 36px;
+    text-align: center;
+    cursor: pointer;
+    margin: 11px 4px;
+}
+
+.search-buttons button:hover {
+    border: 1px solid #dadce0;
 }
