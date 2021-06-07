@@ -38,7 +38,7 @@ footer {
     height: 50px;
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     color: #70757a;
     background-color: #f2f2f2;
@@ -68,6 +68,37 @@ footer a {
 .google-logo {
     width: auto;
     height: 92px;
+    margin: 10px;
+}
+
+.search-bar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border: 1px solid #dfe1e5;
+    border-radius: 24px;
+    height: 44px;
+    width: 584px;
+    margin: 10px;
+}
+
+.search-icon {
+    padding: 6px;
+    height: 28px;
+    width: auto;
+}
+
+.search-input {
+    font-family: Arial, sans-serif;
+    border: none;
+    outline: none;
+    width: 90%;
+    height: 90%;
+}
+
+.search-buttons {
+    display: flex;
+    justify-content: center;
 }
 
 .search-buttons button {
