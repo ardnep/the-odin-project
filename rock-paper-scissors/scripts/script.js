@@ -8,8 +8,8 @@ function computerPlay() {
 }
 
 function getRoundWinner(playerSelection, computerSelection) {
-    // convert playerSelection to human-readable
-    playerSelection = moveOptions[playerSelection - 1]
+    // convert playerSelection to human readable
+    playerSelection = moveOptions[playerSelection - 1];
 
     switch (true) {
         case (playerSelection === computerSelection):
@@ -51,6 +51,7 @@ function playGame(maxRounds) {
         while (!playerSelection) {
             playerSelection = prompt("Choose your move:- (1): Rock (2): Paper (3): Scissors");
         }
+        
         let roundWinner = getRoundWinner(playerSelection, computerSelection);
 
         switch (true) {
@@ -69,8 +70,8 @@ function playGame(maxRounds) {
                 break;
 
             case roundWinner === "invalid":
-                console.log("Please enter a valid move and try again!");
                 i--;
+                console.log("Please enter a valid move and try again!");
         }
     }
 
@@ -82,7 +83,7 @@ function playGame(maxRounds) {
     let overallWinner = getOverallWinner(playerScore, computerScore); 
     if (overallWinner === "player") {
         console.log("Final Result: You won!");
-    } else if(overallWinner === "computer") {
+    } else if (overallWinner === "computer") {
         console.log("Final Result: You lost!");
     } else {
         console.log("Final Result: It's a draw!");
@@ -90,4 +91,4 @@ function playGame(maxRounds) {
 }
 
 
-playGame(5);
+// playGame(5);
