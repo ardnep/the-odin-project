@@ -51,21 +51,26 @@ function playGame(maxRounds) {
         while (!playerSelection) {
             playerSelection = prompt("Choose your move:- (1): Rock (2): Paper (3): Scissors");
         }
-        
+
         let roundWinner = getRoundWinner(playerSelection, computerSelection);
+
+        console.log("Round: " + (i + 1));
 
         switch (true) {
             case roundWinner === "player":
+                console.log("Computer's move was: " + computerSelection);
                 playerScore++;
                 console.log("You Win This Round!");
                 break;
             
             case roundWinner === "computer":
-                computerScore++;
+                console.log("Computer's move was: " + computerSelection);    
+                computerScore++; 
                 console.log("You Lose This Round!");
                 break;
 
             case roundWinner === "draw":
+                console.log("Computer's move was: " + computerSelection);
                 console.log("It's a Draw!");
                 break;
 
@@ -91,4 +96,4 @@ function playGame(maxRounds) {
 }
 
 
-// playGame(5);
+playGame(5);
