@@ -96,4 +96,4 @@ function playGame(maxRounds) {
 }
 
 
-playGame(5);
+// playGame(5);
