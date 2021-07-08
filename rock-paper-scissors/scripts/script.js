@@ -9,7 +9,7 @@ function computerPlay() {
 
 function getRoundWinner(playerSelection, computerSelection) {
     // convert playerSelection to human readable
-    playerSelection = moveOptions[playerSelection - 1];
+    // playerSelection = moveOptions[playerSelection - 1];
 
     switch (true) {
         case (playerSelection === computerSelection):
@@ -97,3 +97,19 @@ function playGame(maxRounds) {
 
 
 // playGame(5);
+
+function playRound(playerSelection) {
+    let computerSelection = computerPlay();
+
+    console.log(getRoundWinner(playerSelection, computerSelection));
+} 
+
+function selectMove(e) {
+    const chosenMove = document.querySelector(`button[id="${e.originalTarget.id}"]`)
+    
+    playRound(e.originalTarget.id);
+}
+
+const moveBtns = document.querySelectorAll('.move');
+
+moveBtns.forEach(btn => btn.addEventListener('click', selectMove));
