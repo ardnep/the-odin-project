@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css?family=Cabin');
+@import url('https://fonts.googleapis.com/css?family=PT%20Mono');
+
+:root {
+    --main-bg-color: #fff;
+    --main-font-color: #000;
+    --main-font-family: 'Cabin', Arial;
+    --main-bg-image: url('../images/bg-image.jpg');
+    --keys-bg-color: #b0966a;
+    --kbd-font-family: 'PT Mono', Arial;
+}
+
+body {
+    background-color: var(--main-bg-color);
+    background-image: var(--main-bg-image);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: var(--main-font-color);
+    font-family: var(--main-font-family);
+}
+
+#title {
+    text-align: center;
+    font-size: 40pt;
+    margin: 100px;
+}
+
+.drum-kit {
+    margin: 5rem;
+    display: grid;
+    grid-gap: 5px;
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    justify-items: center;
+}
+
+.key {
+    background-color: var(--keys-bg-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    border: 5px solid black;
+    border-radius: 5px;
+    width: 3.5rem;
+}
+
+kbd {
+    font-size: xx-large;
+    font-family: var(--kbd-font-family);
+}
