@@ -8,6 +8,7 @@
     --main-bg-image: url('../images/bg-image.jpg');
     --keys-bg-color: rgba(176, 150, 106, 0.8);
     --kbd-font-family: 'PT Mono', Arial;
+    --js-logo-bg-color: #ffeb2a;
 }
 
 body {
@@ -23,6 +24,16 @@ body {
     text-align: center;
     font-size: 40pt;
     margin: 100px;
+}
+
+.js-logo {
+    display: inline-block;
+    background-color: var(--js-logo-bg-color);
+    color: #323330;
+    width: 4rem;
+    height: 4rem;
+    font-size: 38pt;
+    padding: 20px 0 0 20px;
 }
 
 .drum-kit {
@@ -42,9 +53,15 @@ body {
     border: 5px solid black;
     border-radius: 5px;
     width: 3.5rem;
+    transition: all 0.07s;
 }
 
 kbd {
     font-size: xx-large;
     font-family: var(--kbd-font-family);
+}
+
+.playing {
+    transform: scale(1.1);
+    border-color: var(--js-logo-bg-color);
 }
