@@ -98,7 +98,7 @@ function playGame(maxRounds) {
 
 // playGame(5);
 
-function switchScreen() {
+function switchScreenMoves() {
     const startScreen = document.querySelector('#start-page');
     const main = document.querySelector('main');
     const moveOptionsScreen = getMoveOptionsScreen();
@@ -107,9 +107,8 @@ function switchScreen() {
     startScreen.style.animationDirection = 'normal';
     
     setTimeout(function() {
-        main.removeChild(startScreen);
-        main.appendChild(moveOptionsScreen);
-    }, 1000);
+        main.replaceChild(moveOptionsScreen, startScreen);
+    }, 500);
 
     moveOptionsScreen.classList.add('switch-screen');
     moveOptionsScreen.style.animationDirection = 'reverse';
@@ -156,4 +155,4 @@ moveBtns.forEach(btn => btn.addEventListener('click', selectMove));
 
 const playBtn = document.querySelector('#play-btn');
 
-playBtn.addEventListener('click', switchScreen);
+playBtn.addEventListener('click', switchScreenMoves);

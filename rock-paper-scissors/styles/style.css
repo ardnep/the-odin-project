@@ -105,10 +105,9 @@ input:hover, input:focus {
     justify-items: center;
 }
 
-
 .switch-screen {
     animation-name: toggle-view;
-    animation-duration: 1s;
+    animation-duration: 0.5s;
 }
 
 @keyframes toggle-view {
