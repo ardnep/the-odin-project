@@ -1,0 +1,118 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins');
+
+:root {
+    --main-bg-color: #222831; 
+    --main-font-color: #EEEEEE;
+    --main-font-family: 'Poppins', sans-serif;
+    --title-font-color: #D65A31;
+}
+
+body {
+    background-color: var(--main-bg-color);
+    color: var(--main-font-color);
+    font-family: var(--main-font-family);
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 80vh;
+}
+
+#title {
+    font-size: 35pt;
+    color: var(--title-font-color);
+    margin-bottom: 4rem;
+    position: relative;
+}
+
+#start-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#number-of-rounds {
+    font-size: x-large;
+}
+
+input {
+    background-color: #393E46;
+    border: none;
+    border-radius: 6px;
+    outline: none;
+    color: var(--main-font-color);
+    font-family: var(--main-font-family);
+    text-align: center;
+    font-size: xx-large;
+    height: 3rem;
+    width: 30rem;
+    margin: 20px 0 20px 0;
+    -moz-appearance: textfield;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input:hover, input:focus {
+    box-shadow: 1px 1px 10px black;
+}
+
+#play-btn {
+    cursor: pointer;
+    width: 6rem;
+    height: 3rem;
+    background-color: var(--title-font-color);
+    color: var(--main-font-color);
+    font-family: var(--main-font-family);
+    border: none;
+    border-radius: 6px;
+    font-size: 12pt;
+}
+
+#play-btn:hover {
+    background-color: #D37657;
+}
+
+.move-btn {
+    cursor: pointer;
+    height: 8rem;
+    width: 8rem;
+    font-size: large;
+    background-color: var(--title-font-color);
+    color: var(--main-font-color);
+    font-family: var(--main-font-family);
+    border: none;
+    border-radius: 6px;
+}
+
+.move-btn:hover {
+    background-color: #D37657;
+}
+
+.move-options {
+    width: 30%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+    grid-gap: 10px;
+    justify-items: center;
+}
+
+
+.switch-screen {
+    animation-name: toggle-view;
+    animation-duration: 1s;
+}
+
+@keyframes toggle-view {
+    100% {
+        opacity: 0;
+    }
+}

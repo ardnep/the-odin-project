@@ -98,6 +98,46 @@ function playGame(maxRounds) {
 
 // playGame(5);
 
+function switchScreen() {
+    const startScreen = document.querySelector('#start-page');
+    const main = document.querySelector('main');
+    const moveOptionsScreen = getMoveOptionsScreen();
+
+    startScreen.classList.add('switch-screen');
+    startScreen.style.animationDirection = 'normal';
+    
+    setTimeout(function() {
+        main.removeChild(startScreen);
+        main.appendChild(moveOptionsScreen);
+    }, 1000);
+
+    moveOptionsScreen.classList.add('switch-screen');
+    moveOptionsScreen.style.animationDirection = 'reverse';
+}
+
+function getMoveOptionsScreen() {
+    const moveOptionsDiv = document.createElement('div');
+    moveOptionsDiv.classList.add('move-options');
+    
+    const rockBtn = document.createElement('button');
+    rockBtn.classList.add('move-btn');
+    rockBtn.textContent = "Rock"
+
+    const paperBtn = document.createElement('button');
+    paperBtn.classList.add('move-btn');
+    paperBtn.textContent = "Paper"
+
+    const scissorsBtn = document.createElement('button');
+    scissorsBtn.classList.add('move-btn');
+    scissorsBtn.textContent = "Scissors"
+
+    moveOptionsDiv.appendChild(rockBtn);
+    moveOptionsDiv.appendChild(paperBtn);
+    moveOptionsDiv.appendChild(scissorsBtn);
+
+    return moveOptionsDiv;
+}
+
 function playRound(playerSelection) {
     let computerSelection = computerPlay();
 
@@ -106,10 +146,14 @@ function playRound(playerSelection) {
 
 function selectMove(e) {
     const chosenMove = document.querySelector(`button[id="${e.originalTarget.id}"]`)
-    
+
     playRound(e.originalTarget.id);
 }
 
 const moveBtns = document.querySelectorAll('.move');
 
 moveBtns.forEach(btn => btn.addEventListener('click', selectMove));
+
+const playBtn = document.querySelector('#play-btn');
+
+playBtn.addEventListener('click', switchScreen);
