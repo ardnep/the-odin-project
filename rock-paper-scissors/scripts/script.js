@@ -161,6 +161,7 @@ function getOverScreen() {
     overScreen.appendChild(gameOver);
     overScreen.appendChild(winnerDisplay);
     overScreen.appendChild(scoreBoard);
+    overScreen.appendChild(replayInfo);
 
     return overScreen;
 }
