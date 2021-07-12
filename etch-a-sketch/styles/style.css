@@ -1,0 +1,31 @@
+:root {
+    --main-bg-color: black;
+    --main-font-color: white;
+    --main-font-family: Arial;
+}
+
+body {
+    color: var(--main-font-color);
+    background-color: var(--main-bg-color);
+    font-family: var(--main-font-family);
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#canvas-grid {
+    display: grid;
+    width: 500px;
+    height: 500px;
+}
+
+.cell {
+    border: 1px solid white;
+    width: 100%;
+    height: 100%;
+    transition: all 1s;
+}
