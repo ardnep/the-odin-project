@@ -1,33 +1,45 @@
+let maxRounds;
+let currentRound = 1;
+let playerScore = 0;
+let computerScore = 0;
+
 const moveOptions = ["rock", "paper", "scissors"];
 
-function computerPlay() {
+const playBtn = document.querySelector('#play-btn');
+
+playBtn.addEventListener('click', setMaxRounds);
+playBtn.addEventListener('click', switchScreenMoves);
+
+
+function setMaxRounds() {
+    maxRounds = document.querySelector('#number-of-rounds>input').value;
+}
+
+function getComputerSelection() {
     // generate a random integer between 0 and 2
-    let computerChoice = Math.floor(Math.random() * (3 - 0) + 0);
-    
-    return moveOptions[computerChoice];
+    let computerSelection = Math.floor(Math.random() * (3 - 0) + 0);
+
+    return moveOptions[computerSelection];
 }
 
 function getRoundWinner(playerSelection, computerSelection) {
-    // convert playerSelection to human readable
-    // playerSelection = moveOptions[playerSelection - 1];
-
     switch (true) {
         case (playerSelection === computerSelection):
             return "draw";
-        
+
         case (playerSelection === "rock" && computerSelection === "paper"):
         case (playerSelection === "paper" && computerSelection === "scissors"):
         case (playerSelection === "scissors" && computerSelection === "rock"):
             return "computer";
-        
+
         case (playerSelection === "paper" && computerSelection === "rock"):
         case (playerSelection === "rock" && computerSelection === "scissors"):
         case (playerSelection === "scissors" && computerSelection === "paper"):
-            return "player"; 
-        
+            return "player";
+
         default:
             return "invalid";
-    } 
+    }
 }
 
 function getOverallWinner(playerScore, computerScore) {
@@ -40,94 +52,71 @@ function getOverallWinner(playerScore, computerScore) {
     }
 }
 
-function playGame(maxRounds) {
-    let playerScore = 0;
-    let computerScore = 0;
+function getScoreBoard() {
+    const scoreBoard = document.createElement('div');
+    scoreBoard.classList.add('score-board');
 
-    // running game for multiple rounds and changing scores accordingly
-    for (let i = 0; i < maxRounds; i++) {
-        let computerSelection = computerPlay();
-        let playerSelection;
-        while (!playerSelection) {
-            playerSelection = prompt("Choose your move:- (1): Rock (2): Paper (3): Scissors");
-        }
+    const previousWinnerDisplay = document.createElement('p');
+    previousWinnerDisplay.textContent = 'Last Round Winner:';
 
-        let roundWinner = getRoundWinner(playerSelection, computerSelection);
+    const previousMoveDisplay = document.createElement('p');
+    previousMoveDisplay.textContent = 'Computer\'s Last Move:';
 
-        console.log("Round: " + (i + 1));
+    const playerScoreDisplay = document.createElement('p');
+    playerScoreDisplay.textContent = `Your Current Score: ${playerScore}`;
 
-        switch (true) {
-            case roundWinner === "player":
-                console.log("Computer's move was: " + computerSelection);
-                playerScore++;
-                console.log("You Win This Round!");
-                break;
-            
-            case roundWinner === "computer":
-                console.log("Computer's move was: " + computerSelection);    
-                computerScore++; 
-                console.log("You Lose This Round!");
-                break;
+    const computerScoreDisplay = document.createElement('p');
+    computerScoreDisplay.textContent = `Compter's Current Score: ${computerScore}`;
 
-            case roundWinner === "draw":
-                console.log("Computer's move was: " + computerSelection);
-                console.log("It's a Draw!");
-                break;
+    scoreBoard.appendChild(previousWinnerDisplay);
+    scoreBoard.appendChild(previousMoveDisplay);
+    scoreBoard.appendChild(playerScoreDisplay);
+    scoreBoard.appendChild(computerScoreDisplay);
 
-            case roundWinner === "invalid":
-                i--;
-                console.log("Please enter a valid move and try again!");
-        }
-    }
-
-    // displaying overall scores
-    console.log("Your Overall Score: " + playerScore);
-    console.log("Computer's Overall Score: " + computerScore);
-
-    // finding the overall winner
-    let overallWinner = getOverallWinner(playerScore, computerScore); 
-    if (overallWinner === "player") {
-        console.log("Final Result: You won!");
-    } else if (overallWinner === "computer") {
-        console.log("Final Result: You lost!");
-    } else {
-        console.log("Final Result: It's a draw!");
-    }
+    return scoreBoard;
 }
 
+function getCurrentRoundDisplay() {
+    const currentRoundDisplay = document.createElement('h2');
+    currentRoundDisplay.classList.add('current-round');
+    currentRoundDisplay.textContent = `Current Round: ${currentRound}`;
 
-// playGame(5);
-
-function switchScreenMoves() {
-    const startScreen = document.querySelector('#start-page');
-    const main = document.querySelector('main');
-    const moveOptionsScreen = getMoveOptionsScreen();
-
-    startScreen.classList.add('switch-screen');
-    startScreen.style.animationDirection = 'normal';
-    
-    setTimeout(function() {
-        main.replaceChild(moveOptionsScreen, startScreen);
-    }, 500);
-
-    moveOptionsScreen.classList.add('switch-screen');
-    moveOptionsScreen.style.animationDirection = 'reverse';
+    return currentRoundDisplay;
 }
 
-function getMoveOptionsScreen() {
+function getGameInfo() {
+    const gameInfo = document.createElement('div');
+    gameInfo.id = 'game-info';
+
+    const currentRoundDisplay = getCurrentRoundDisplay();
+    const scoreBoard = getScoreBoard();
+
+    gameInfo.appendChild(currentRoundDisplay);
+    gameInfo.appendChild(scoreBoard);
+
+    return gameInfo;
+}
+
+function getMoveOptionsDiv() {
     const moveOptionsDiv = document.createElement('div');
     moveOptionsDiv.classList.add('move-options');
-    
+
     const rockBtn = document.createElement('button');
     rockBtn.classList.add('move-btn');
+    rockBtn.id = 'rock';
+    rockBtn.addEventListener('click', playGame);
     rockBtn.textContent = "Rock"
 
     const paperBtn = document.createElement('button');
     paperBtn.classList.add('move-btn');
+    paperBtn.id = 'paper';
+    paperBtn.addEventListener('click', playGame);
     paperBtn.textContent = "Paper"
 
     const scissorsBtn = document.createElement('button');
     scissorsBtn.classList.add('move-btn');
+    scissorsBtn.id = 'scissors';
+    scissorsBtn.addEventListener('click', playGame);
     scissorsBtn.textContent = "Scissors"
 
     moveOptionsDiv.appendChild(rockBtn);
@@ -137,22 +126,110 @@ function getMoveOptionsScreen() {
     return moveOptionsDiv;
 }
 
-function playRound(playerSelection) {
-    let computerSelection = computerPlay();
+function getPlayScreen() {
+    const playScreen = document.createElement('div');
+    playScreen.id = 'play-screen';
 
-    console.log(getRoundWinner(playerSelection, computerSelection));
-} 
+    const moveOptionsDiv = getMoveOptionsDiv();
+    const gameInfo = getGameInfo();
 
-function selectMove(e) {
-    const chosenMove = document.querySelector(`button[id="${e.originalTarget.id}"]`)
+    playScreen.appendChild(moveOptionsDiv);
+    playScreen.appendChild(gameInfo);
 
-    playRound(e.originalTarget.id);
+    return playScreen;
 }
 
-const moveBtns = document.querySelectorAll('.move');
+function getOverScreen() {
+    const overScreen = document.createElement('div');
+    overScreen.id = 'over-screen';
 
-moveBtns.forEach(btn => btn.addEventListener('click', selectMove));
+    const gameOver = document.createElement('h2');
+    gameOver.textContent = 'Game Over!';
 
-const playBtn = document.querySelector('#play-btn');
+    const winnerDisplay = document.createElement('h3');
+    let winner = getOverallWinner(playerScore, computerScore);
+    winnerDisplay.textContent = `The Overall Winner is: ${winner}`;
 
-playBtn.addEventListener('click', switchScreenMoves);
+    const playScreen = document.getElementById('play-screen');
+    const gameInfo = playScreen.childNodes[1];
+    const scoreBoard = gameInfo.childNodes[1];
+    console.log(scoreBoard);
+
+    const replayInfo = document.createElement('p');
+    replayInfo.textContent = 'Press F5 to replay';
+
+    overScreen.appendChild(gameOver);
+    overScreen.appendChild(winnerDisplay);
+    overScreen.appendChild(scoreBoard);
+
+    return overScreen;
+}
+
+function switchScreenMoves() {
+    if (!maxRounds) return;
+
+    const startScreen = document.querySelector('#start-page');
+    const main = document.querySelector('main');
+    const playScreen = getPlayScreen();
+
+    startScreen.classList.add('switch-screen');
+    startScreen.style.animationDirection = 'normal';
+
+    setTimeout(function () {
+        main.replaceChild(playScreen, startScreen);
+    }, 500);
+}
+
+function switchScreenOver() {
+    const main = document.querySelector('main');
+
+    const playScreen = document.getElementById('play-screen');
+
+    const overScreen = getOverScreen();
+
+    playScreen.classList.add('switch-screen');
+    playScreen.style.animationDirection = 'normal';
+
+    setTimeout(function() {
+        main.replaceChild(overScreen, playScreen);
+    }, 500);
+}
+
+function updateGameInfo(roundWinner, computerSelection) {
+    const gameInfo = document.getElementById('game-info');
+
+    const currentRoundDisplay = gameInfo.childNodes[0];
+    const previousWinnerDisplay = gameInfo.childNodes[1].childNodes[0];
+    const previousMoveDisplay = gameInfo.childNodes[1].childNodes[1];
+    const playerScoreDisplay = gameInfo.childNodes[1].childNodes[2];
+    const computerScoreDisplay = gameInfo.childNodes[1].childNodes[3];
+
+    currentRoundDisplay.textContent = `Current Round: ${currentRound}`;
+
+    previousWinnerDisplay.textContent = `Last Round Winner: ${roundWinner}`;
+
+    previousMoveDisplay.textContent = `Computer's Last Move: ${computerSelection}`;
+
+    playerScoreDisplay.textContent = `Your Current Score: ${playerScore}`;
+    computerScoreDisplay.textContent = `Computer's Current Score: ${computerScore}`;
+}
+
+function playGame(e) {
+    let playerSelection = e.originalTarget.id;
+    let computerSelection = getComputerSelection();
+
+    let roundWinner = getRoundWinner(playerSelection, computerSelection);
+
+    if (roundWinner === 'player') {
+        playerScore++;
+    } else if (roundWinner === 'computer') {
+        computerScore++;
+    }
+
+    currentRound++;
+    updateGameInfo(roundWinner, computerSelection);
+
+    if (currentRound > maxRounds) {
+        switchScreenOver();
+    };
+}
