@@ -1,10 +1,20 @@
 function paint(e) {
     cellId = e.originalTarget.id;
-    
+
     const cellToPaint = document.getElementById(cellId);
 
     cellToPaint.style.backgroundColor = 'white';
 
+}
+
+function resetCanvas() {
+    canvas = document.querySelector('#canvas-grid');
+
+    canvasBackgroundColor = 'black';
+
+    const cells = canvas.childNodes;
+
+    cells.forEach(cell => cell.style.backgroundColor = canvasBackgroundColor);
 }
 
 function createCanvas(rows, columns) {
@@ -25,3 +35,6 @@ function createCanvas(rows, columns) {
 }
 
 createCanvas(16, 16);
+
+const resetBtn = document.querySelector('#reset');
+resetBtn.addEventListener('click', resetCanvas);
